@@ -22,6 +22,7 @@ A API possue dois recursos principais:
 ## Estrutura do Projeto
 
 - `src/controllers`: Contém os controladores para as rotas da API.
+- `src/middlewares`: Contém os middlewares para autenticação e captura de erros.
 - `src/models`: Contém os modelos de dados e as funções de acesso ao banco de dados.
 - `src/routers`: Contém as definições das rotas da API.
 - `src/server.js`: Ponto de entrada da aplicação.
