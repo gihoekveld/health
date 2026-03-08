@@ -8,5 +8,5 @@ export const fetchTestResultsHistory = async (req, res) => {
 
   const testResults = await findMany({ from, to, metricIds });
 
-  return res.status(200).json(testResults);
+  return res.status(200).json({ history: testResults });
 };
