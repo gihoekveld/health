@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: health-db
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./prisma/migrations/20260308014104_init/migration.sql:/docker-entrypoint-initdb.d/init.sql

@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique @db.VarChar(255)
+  password String @db.VarChar(255)
+
+  @@map("users")
+}
+
+model Metric {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+  unit String @db.VarChar(50)
+
+  testResults TestResult[]
+
+  @@map("metrics")
+}
+
+model Test {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  testResults TestResult[]
+
+  @@map("tests")
+}
+
+model TestResult {
+  id       Int   @id @default(autoincrement())
+  testId   Int   @map("test_id")
+  metricId Int   @map("metric_id")
+  value    Float
+
+  test   Test   @relation(fields: [testId], references: [id])
+  metric Metric @relation(fields: [metricId], references: [id])
+
+  @@map("test_results")
+}
