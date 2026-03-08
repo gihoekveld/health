@@ -1,0 +1,25 @@
+info:
+  name: Create Rest Result
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/tests"
+  body:
+    type: json
+    data: |-
+      {
+        "date": "2026-03-11",
+        "tests": [
+          { "metricId": 3, "value": 200.01},
+          { "metricId": 2, "value": 20.22}
+        ] 
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
