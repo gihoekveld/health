@@ -15,6 +15,28 @@ export const testResultSchema = z.object({
   ),
 });
 
+export const testResultHistoryQuerySchema = z.object({
+  from: z
+    .string()
+    .refine((date) => !Number.isNaN(Date.parse(date)), {
+      message: 'Data inválida',
+    })
+    .optional(),
+  to: z
+    .string()
+    .refine((date) => !Number.isNaN(Date.parse(date)), {
+      message: 'Data inválida',
+    })
+    .optional(),
+  metricIds: z
+    .string()
+    .transform((str) => {
+      if (!str) return undefined;
+      return str.split(',').map((id) => Number.parseInt(id.trim(), 10));
+    })
+    .optional(),
+});
+
 export const create = async (date, tests) => {
   return await prisma.test.create({
     data: {
@@ -28,4 +50,49 @@ export const create = async (date, tests) => {
     },
     include: { testResults: true },
   });
+};
+
+export const findMany = async ({ from, to, metricIds }) => {
+  const tests = await prisma.test.findMany({
+    where: {
+      createdAt: {
+        gte: from ? new Date(from) : undefined,
+        lte: to ? new Date(to) : undefined,
+      },
+      testResults: {
+        some: {
+          metricId: metricIds ? { in: metricIds } : undefined,
+        },
+      },
+    },
+    include: {
+      testResults: {
+        include: {
+          metric: {
+            select: {
+              id: true,
+              name: true,
+              unit: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  // Se metricIds foi informado, filtra os testResults de cada teste
+  if (metricIds && Array.isArray(metricIds)) {
+    return tests.map((test) => ({
+      ...test,
+      testResults: test.testResults
+        .filter((tr) => metricIds.includes(tr.metricId))
+        .map((tr) => ({
+          id: tr.id,
+          value: tr.value,
+          metric: tr.metric,
+        })),
+    }));
+  }
+
+  return tests;
 };
