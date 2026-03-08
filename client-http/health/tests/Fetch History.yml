@@ -5,7 +5,17 @@ info:
 
 http:
   method: GET
-  url: "{{BASE_URL}}/tests"
+  url: "{{BASE_URL}}/tests?from=2026-03-10&to=2026-03-10&metricIds=3,2"
+  params:
+    - name: from
+      value: 2026-03-10
+      type: query
+    - name: to
+      value: 2026-03-10
+      type: query
+    - name: metricIds
+      value: 3,2
+      type: query
   auth: inherit
 
 settings:

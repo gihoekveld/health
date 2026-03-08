@@ -1,5 +1,5 @@
 info:
-  name: List Metrics
+  name: Fetch Metrics
   type: http
   seq: 2
 
