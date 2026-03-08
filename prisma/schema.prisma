@@ -10,6 +10,7 @@ datasource db {
 
 model User {
   id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(255)
   email    String @unique @db.VarChar(255)
   password String @db.VarChar(255)
 
@@ -41,8 +42,8 @@ model TestResult {
   metricId Int   @map("metric_id")
   value    Float
 
-  test   Test   @relation(fields: [testId], references: [id])
-  metric Metric @relation(fields: [metricId], references: [id])
+  test   Test   @relation(fields: [testId], references: [id], onDelete: Cascade)
+  metric Metric @relation(fields: [metricId], references: [id], onDelete: Cascade)
 
   @@map("test_results")
 }

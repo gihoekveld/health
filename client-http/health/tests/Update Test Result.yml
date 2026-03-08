@@ -1,18 +1,22 @@
 info:
-  name: Create Rest Result
+  name: Update Test Result
   type: http
-  seq: 1
+  seq: 3
 
 http:
-  method: POST
-  url: "{{BASE_URL}}/tests"
+  method: PUT
+  url: "{{BASE_URL}}/tests/:id"
+  params:
+    - name: id
+      value: "3"
+      type: path
   body:
     type: json
     data: |-
       {
-        "date": "2026-03-11",
+        "date": "2026-03-09",
         "tests": [
-          { "metricId": 3, "value": 200.01},
+          { "metricId": 4, "value": 195.01},
           { "metricId": 2, "value": 20.22}
         ] 
       }

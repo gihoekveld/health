@@ -14,14 +14,14 @@ export const ensureAuthenticated = (req, res, next) => {
   }
 
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.userLogged = payload;
+    req.user = decoded.user;
+
+    next();
   } catch (err) {
     console.error('Ocorreu um erro ao verificar o token:', err);
 
     return res.status(401).json({ message: 'Acesso não autorizado!' });
   }
-
-  next();
 };

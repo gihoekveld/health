@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import { userSchema, create, findByEmail } from '../../models/usersModel.js';
 
-export const createUser = async (req, res) => {
-  const { email, password } = userSchema.parse(req.body);
+export const registerUser = async (req, res) => {
+  const { name, email, password } = userSchema.parse(req.body);
 
   const existingUser = await findByEmail(email);
 
@@ -13,7 +13,7 @@ export const createUser = async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  await create({ email, password: hashedPassword });
+  await create({ name, email, password: hashedPassword });
 
   return res.status(201).json({ message: 'Usuário criado com sucesso' });
 };

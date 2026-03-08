@@ -52,6 +52,23 @@ export const create = async (date, tests) => {
   });
 };
 
+export const update = async (id, date, tests) => {
+  return await prisma.test.update({
+    where: { id },
+    data: {
+      createdAt: new Date(date),
+      testResults: {
+        deleteMany: {}, // Remove resultados antigos
+        create: tests.map((test) => ({
+          metricId: test.metricId,
+          value: test.value,
+        })),
+      },
+    },
+    include: { testResults: true },
+  });
+};
+
 export const findMany = async ({ from, to, metricIds }) => {
   const tests = await prisma.test.findMany({
     where: {
@@ -95,4 +112,10 @@ export const findMany = async ({ from, to, metricIds }) => {
   }
 
   return tests;
+};
+
+export const remove = async (id) => {
+  return await prisma.test.delete({
+    where: { id },
+  });
 };

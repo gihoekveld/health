@@ -70,8 +70,21 @@ Registra um novo usuário.
 
 ```json
 {
+  "name": "Giselle Hoekveld",
   "email": "gihoekveld@gmail.com",
   "password": "senha123"
+}
+```
+
+### `PATCH /user/name`
+
+Atualiza o nome do usuário autenticado.
+
+- Exemplo de payload:
+
+```json
+{
+  "name": "Giselle Hoekveld Silva"
 }
 ```
 
@@ -265,5 +278,39 @@ Lista todos os resultados de exames, com a opção de filtrar por período e mé
       ]
     }
   ]
+}
+```
+
+### `PUT /tests/:id`
+
+Atualiza um resultado de exame existente.
+
+- Exemplo de payload:
+
+```json
+{
+  "date": "2024-06-01",
+  "tests": [
+    {
+      "metricId": 1,
+      "value": 125
+    },
+    {
+      "metricId": 2,
+      "value": 85
+    }
+  ]
+}
+```
+
+### `DELETE /tests/:id`
+
+Remove um resultado de exame.
+
+- Exemplo de resposta:
+
+```json
+{
+  "message": "Resultado de exame removido com sucesso!"
 }
 ```

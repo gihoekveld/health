@@ -1,8 +1,12 @@
 import express from 'express';
-import { createUser } from '../controllers/users/createUser.js';
+import { registerUser } from '../controllers/users/registerUser.js';
+import { changeUserName } from '../controllers/users/changeUserName.js';
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 
 const router = express.Router();
 
-router.post('/', createUser);
+router.post('/', registerUser);
+router.use(ensureAuthenticated);
+router.patch('/name', changeUserName);
 
 export default router;

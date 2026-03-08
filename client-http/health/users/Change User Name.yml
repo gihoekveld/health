@@ -1,0 +1,21 @@
+info:
+  name: Change User Name
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/users/name"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Giselle Hoekveld Silva"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

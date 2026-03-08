@@ -4,9 +4,7 @@ export const updateMetric = async (req, res) => {
   const { id } = req.params;
   const { name, unit } = metricSchema.parse(req.body);
 
-  const newMetric = await update(+id, { name, unit });
+  const metric = await update(+id, { name, unit });
 
-  return res.status(200).json({
-    metric: newMetric,
-  });
+  return res.status(200).json({ metric });
 };
