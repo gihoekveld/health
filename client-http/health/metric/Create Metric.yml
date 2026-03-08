@@ -1,17 +1,17 @@
 info:
-  name: Create User
+  name: Create Metric
   type: http
   seq: 1
 
 http:
   method: POST
-  url: '{{BASE_URL}}/user'
+  url: "{{BASE_URL}}/metrics"
   body:
     type: json
     data: |-
       {
-        "email": "gihoekveld@gmail.com",
-        "password": "123@Mudar"
+        "name": "HDL",
+        "unit": "mg/dL"
       }
   auth: inherit
 
