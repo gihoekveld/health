@@ -9,9 +9,9 @@
   "scripts": {
     "postinstall": "prisma generate",
     "start": "node src/server.js",
+    "predev": "npm run db:init",
     "dev": "node --watch --env-file=.env src/server.js",
     "db:init": "docker compose up -d",
-    "db:client": "prisma generate",
     "db:studio": "prisma studio",
     "format": "prettier --write ."
   },
