@@ -1,4 +1,4 @@
-import { metricSchema, update } from '../../models/metricModel.js';
+import { metricSchema, update } from '../../models/metricsModel.js';
 
 export const updateMetric = async (req, res) => {
   const { id } = req.params;

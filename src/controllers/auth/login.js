@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { findByEmail, userSchema } from '../../models/userModel.js';
+import { findByEmail, userSchema } from '../../models/usersModel.js';
 
 export const login = async (req, res) => {
   const { email, password } = userSchema.parse(req.body);

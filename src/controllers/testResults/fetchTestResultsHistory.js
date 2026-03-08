@@ -1,7 +1,7 @@
 import {
   findMany,
   testResultHistoryQuerySchema,
-} from '../../models/testResultModel.js';
+} from '../../models/testResultsModel.js';
 
 export const fetchTestResultsHistory = async (req, res) => {
   const { from, to, metricIds } = testResultHistoryQuerySchema.parse(req.query);

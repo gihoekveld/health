@@ -1,4 +1,4 @@
-import { list } from '../../models/metricModel.js';
+import { list } from '../../models/metricsModel.js';
 
 export const fetchMetrics = async (req, res) => {
   const metrics = await list();

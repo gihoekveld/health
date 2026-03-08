@@ -1,4 +1,4 @@
-import { remove } from '../../models/metricModel.js';
+import { remove } from '../../models/metricsModel.js';
 
 export const removeMetric = async (req, res) => {
   const { id } = req.params;

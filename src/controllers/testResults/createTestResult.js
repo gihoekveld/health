@@ -1,4 +1,4 @@
-import { create, testResultSchema } from '../../models/testResultModel.js';
+import { create, testResultSchema } from '../../models/testResultsModel.js';
 
 export const createTestResult = async (req, res) => {
   const { date, tests } = testResultSchema.parse(req.body);

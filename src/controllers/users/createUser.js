@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { userSchema, create, findByEmail } from '../../models/userModel.js';
+import { userSchema, create, findByEmail } from '../../models/usersModel.js';
 
 export const createUser = async (req, res) => {
   const { email, password } = userSchema.parse(req.body);
