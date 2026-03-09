@@ -29,7 +29,7 @@ model Metric {
 
 model Test {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now()) @map("created_at")
+  date      DateTime @map("date") @db.Date
 
   testResults TestResult[]
 

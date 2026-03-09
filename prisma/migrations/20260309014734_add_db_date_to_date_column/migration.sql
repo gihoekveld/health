@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "tests" ALTER COLUMN "date" SET DATA TYPE DATE;

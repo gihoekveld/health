@@ -8,4 +8,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./prisma/migrations/20260308014104_init/migration.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./prisma/migrations/20260308234304_init/migration.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./prisma/migrations/20260309013100_rename_created_at_column_to_date/migration.sql:/docker-entrypoint-initdb.d/02-rename-created-at-column-to-date.sql
+      - ./prisma/migrations/20260309013637_remove_default_now_from_date_column/migration.sql:/docker-entrypoint-initdb.d/03-remove-default-now-from-date-column.sql
+      - ./prisma/migrations/20260309014734_add_db_date_to_date_column/migration.sql:/docker-entrypoint-initdb.d/03-add-db-date-to-date-column.sql

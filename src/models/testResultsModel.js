@@ -40,7 +40,7 @@ export const testResultHistoryQuerySchema = z.object({
 export const create = async (date, tests) => {
   return await prisma.test.create({
     data: {
-      createdAt: new Date(date),
+      date: new Date(date),
       testResults: {
         create: tests.map((test) => ({
           metricId: test.metricId,
@@ -56,7 +56,7 @@ export const update = async (id, date, tests) => {
   return await prisma.test.update({
     where: { id },
     data: {
-      createdAt: new Date(date),
+      date: new Date(date),
       testResults: {
         deleteMany: {}, // Remove resultados antigos
         create: tests.map((test) => ({
@@ -72,7 +72,7 @@ export const update = async (id, date, tests) => {
 export const findMany = async ({ from, to, metricIds }) => {
   const tests = await prisma.test.findMany({
     where: {
-      createdAt: {
+      date: {
         gte: from ? new Date(from) : undefined,
         lte: to ? new Date(to) : undefined,
       },

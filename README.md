@@ -255,7 +255,7 @@ Lista todos os resultados de exames, com a opção de filtrar por período e mé
   "history": [
     {
       "id": 1,
-      "createdAt": "2026-03-10T00:00:00.000Z",
+      "date": "2026-03-10T00:00:00.000Z",
       "testResults": [
         {
           "id": 1,
