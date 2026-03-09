@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { findByEmail, userSchema } from '../../models/usersModel.js';
+import { findByEmail, loginSchema } from '../../models/usersModel.js';
 
 export const login = async (req, res) => {
-  const { email, password } = userSchema.parse(req.body);
+  const { email, password } = loginSchema.parse(req.body);
 
   // Verificar se o usuário existe
   const user = await findByEmail(email);

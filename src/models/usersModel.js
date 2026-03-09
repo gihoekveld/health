@@ -10,10 +10,12 @@ export const userNameSchema = z.object({
     .max(255, 'O nome deve conter no máximo 255 caracteres'),
 });
 
-export const userSchema = userNameSchema.extend({
+export const loginSchema = z.object({
   email: z.email('Email inválido'),
   password: z.string().min(6, 'A senha deve conter pelo menos 6 caracteres'),
 });
+
+export const userSchema = userNameSchema.extend(loginSchema.shape);
 
 export const create = async (user) => {
   return await prisma.user.create({
