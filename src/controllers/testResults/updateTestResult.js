@@ -2,9 +2,9 @@ import { update, testResultSchema } from '../../models/testResultsModel.js';
 
 export const updateTestResult = async (req, res) => {
   const { id } = req.params;
-  const { date, tests } = testResultSchema.parse(req.body);
+  const { date, testResults } = testResultSchema.parse(req.body);
 
-  const testResult = await update(+id, date, tests);
+  const test = await update(+id, date, testResults);
 
-  return res.status(200).json(testResult);
+  return res.status(200).json({ test });
 };

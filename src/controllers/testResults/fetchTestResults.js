@@ -3,10 +3,10 @@ import {
   testResultHistoryQuerySchema,
 } from '../../models/testResultsModel.js';
 
-export const fetchTestResultsHistory = async (req, res) => {
+export const fetchTestResults = async (req, res) => {
   const { from, to, metricIds } = testResultHistoryQuerySchema.parse(req.query);
 
-  const testResults = await findMany({ from, to, metricIds });
+  const tests = await findMany({ from, to, metricIds });
 
-  return res.status(200).json({ history: testResults });
+  return res.status(200).json({ tests });
 };

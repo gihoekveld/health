@@ -7,7 +7,7 @@ export const testResultSchema = z.object({
   date: z.string().refine((date) => !Number.isNaN(Date.parse(date)), {
     message: 'Data inválida',
   }),
-  tests: z.array(
+  testResults: z.array(
     z.object({
       metricId: z.number('O ID do exame deve ser um número'),
       value: z.number('O valor do exame deve ser um número'),
@@ -37,14 +37,14 @@ export const testResultHistoryQuerySchema = z.object({
     .optional(),
 });
 
-export const create = async (date, tests) => {
+export const create = async (date, testResults) => {
   return await prisma.test.create({
     data: {
       date: new Date(date),
       testResults: {
-        create: tests.map((test) => ({
-          metricId: test.metricId,
-          value: test.value,
+        create: testResults.map((result) => ({
+          metricId: result.metricId,
+          value: result.value,
         })),
       },
     },
@@ -52,16 +52,16 @@ export const create = async (date, tests) => {
   });
 };
 
-export const update = async (id, date, tests) => {
+export const update = async (id, date, testResults) => {
   return await prisma.test.update({
     where: { id },
     data: {
       date: new Date(date),
       testResults: {
         deleteMany: {}, // Remove resultados antigos
-        create: tests.map((test) => ({
-          metricId: test.metricId,
-          value: test.value,
+        create: testResults.map((result) => ({
+          metricId: result.metricId,
+          value: result.value,
         })),
       },
     },

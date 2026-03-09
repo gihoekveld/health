@@ -231,7 +231,7 @@ Cria um novo resultado de exame.
 ```json
 {
   "date": "2024-06-01",
-  "tests": [
+  "testResults": [
     {
       "metricId": 1,
       "value": 120
@@ -252,7 +252,7 @@ Lista todos os resultados de exames, com a opção de filtrar por período e mé
 
 ```json
 {
-  "history": [
+  "tests": [
     {
       "id": 1,
       "date": "2026-03-10T00:00:00.000Z",
@@ -290,7 +290,7 @@ Atualiza um resultado de exame existente.
 ```json
 {
   "date": "2024-06-01",
-  "tests": [
+  "testResults": [
     {
       "metricId": 1,
       "value": 125

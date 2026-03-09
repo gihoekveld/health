@@ -15,7 +15,7 @@ http:
     data: |-
       {
         "date": "2026-03-09",
-        "tests": [
+        "testResults": [
           { "metricId": 4, "value": 195.01},
           { "metricId": 2, "value": 20.22}
         ] 
