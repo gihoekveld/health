@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "name": "Pressão Arterial",
-        "unit": "mmHg"
+        "name": "Glicemia",
+        "unit": "mg/dL"
       }
   auth: inherit
 
